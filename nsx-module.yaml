@@ -9,6 +9,24 @@ support:
   ambiqsuite: true
   zephyr: false
 
+summary: CMSIS and startup integration for vector tables, startup code, and early boot wiring.
+
+capabilities:
+  - cmsis
+  - startup
+  - boot_integration
+
+use_cases:
+  - startup code wiring
+  - vector table integration
+  - common boot and reset initialization
+
+agent_keywords:
+  - cmsis
+  - startup
+  - vector table
+  - boot
+
 build:
   cmake:
     package: nsx_soc_${target.soc}
