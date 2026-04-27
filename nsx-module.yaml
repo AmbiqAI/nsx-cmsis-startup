@@ -34,7 +34,8 @@ build:
       - nsx::startup
 
 depends:
-  required: []
+  required:
+    - nsx-cmsis-core
   optional: []
 
 compatibility:

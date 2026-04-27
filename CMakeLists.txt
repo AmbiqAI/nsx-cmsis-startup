@@ -23,12 +23,15 @@ add_library(nsx::startup ALIAS nsx_startup)
 add_library(nsx::cmsis_startup ALIAS nsx_startup)
 add_library(nsx::${NSX_STARTUP_TARGET_EXPORT_NAME} ALIAS nsx_startup)
 
-target_link_libraries(nsx_startup PUBLIC ${NSX_BOARD_FLAGS_TARGET})
+target_link_libraries(nsx_startup PUBLIC
+    ${NSX_BOARD_FLAGS_TARGET}
+    nsx::cmsis_core
+)
 
+# Core CMSIS headers (core_cm*, cmsis_compiler.h, m-profile/*) are exported by
+# nsx-cmsis-core. Only AmbiqMicro device-specific headers remain owned here.
 target_include_directories(nsx_startup PUBLIC
-    $<BUILD_INTERFACE:${NSX_AMBIQSUITE_ROOT}/CMSIS/ARM/Include>
     $<BUILD_INTERFACE:${NSX_AMBIQSUITE_ROOT}/CMSIS/AmbiqMicro/Include>
-    $<INSTALL_INTERFACE:${NSX_AMBIQ_INSTALL_BASE}/CMSIS/ARM/Include>
     $<INSTALL_INTERFACE:${NSX_AMBIQ_INSTALL_BASE}/CMSIS/AmbiqMicro/Include>
 )
 
